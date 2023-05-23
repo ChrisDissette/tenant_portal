@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="heading">
+        <h2>{{ tenant.first_name }} {{ tenant.last_name }}'s Dashboard</h2>
+    </div>
+
+    <div class="info-cards">
+        <div class="card">
+            <h5>Lease Information</h5>
+            <p>Lease start date: {{ tenant.lease_start }}</p>
+            <p>Lease end date: {{ tenant.lease_end }}</p>
+            <a href="{{ tenant.lease_pdf.url }}" download>Download Lease PDF</a>
+        </div>
+
+        <div class="card">
+            <h5>Actions</h5>
+            <a href="{% url 'submit_rent_payment' %}">Submit Rent Payment</a>
+            <a href="{% url 'submit_maintenance_request' %}">Submit Maintenance Request</a>
+            <a href="{% url 'submit_message' %}">Submit Message to Landlord</a>
+            <a href="{% url 'user_logout' %}">Logout</a>
+        </div>
+    </div>
+
+    <div class="tables">
+        <div class="table-container">
+            <h5>Payment History</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment in payments %}
+                    <tr>
+                        <td>{{ payment.payment_date|date:"F j, Y" }}</td>
+                        <td>{{ payment.amount|floatformat:2 }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2">No payment history found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h5>Maintenance Request History</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in maintenance_requests %}
+                    <tr>
+                        <td>{{ request.submitted_date|date:"F j, Y, g:i a" }}</td>
+                        <td>{{ request.description }}</td>
+                        <td>{{ request.status }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">No maintenance requests found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h5>Message History</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for message in messages %}
+                    <tr>
+                        <td>{{ message.submitted_date|date:"F j, Y, g:i a" }}</td>
+                        <td>{{ message.title }}</td>
+                        <td>{{ message.content }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">No messages found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="maintenance-request-detail-container">
+    <div class="maintenance-request-details">
+        <h1>Maintenance Request</h1>
+        <table>
+            <tr>
+                <th>Title</th>
+                <td>{{ maintenance_request.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ maintenance_request.description }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ maintenance_request.status }}</td>
+            </tr>
+            <tr>
+                <th>Tenant</th>
+                <td>{{ maintenance_request.tenant.first_name }} {{ maintenance_request.tenant.last_name }}</td>
+            </tr>
+            <tr>
+                <th>Apartment Number</th>
+                <td>{{ maintenance_request.tenant.apartment_number }}</td>
+            </tr>
+            <tr>
+                <th>Submission Date</th>
+                <td>{{ maintenance_request.submitted_date|date:"F j, Y, P" }}</td>
+            </tr>
+            <tr>
+                <th>Completion Date</th>
+                {% if maintenance_request.completion_date %}
+                <td>{{ maintenance_request.completion_date|date:"F j, Y, P" }}</td>
+                {% else %}
+                <td>Not yet completed</td>
+                {% endif %}
+            </tr>
+        </table>
+        
+        <div class="button-link-group">
+            <form method="post" action="{% url 'update_maintenance_request_status' maintenance_request.pk %}">
+                {% csrf_token %}
+                <select name="status" class="status-dropdown">
+                    <option value="Pending" {% if maintenance_request.status == 'Pending' %}selected{% endif %}>Pending</option>
+                    <option value="In Progress" {% if maintenance_request.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                    <option value="Completed" {% if maintenance_request.status == 'Completed' %}selected{% endif %}>Completed</option>
+                </select>                
+                <button type="submit" class="btn btn-primary">Update Status</button>
+            </form>
+            <a href="{% url 'landlord_dashboard' %}">Return to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

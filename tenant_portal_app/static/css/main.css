@@ -1,0 +1,751 @@
+/* :root {
+  --background-color: #2a2b2e;
+  --button-color: springgreen;
+  --button-hover: #70ee9c;
+  --button-link-color: #ffffff;
+  --secondary-color: #5a5a66;
+  --text-color: #ffffff;
+  --link-color: #2191FB;
+  --danger: #cc0000;
+  --danger-hover: #cc0000;
+  --danger-text: #ffffff;
+  --table-text: #2f80ed;
+} */
+
+:root {
+  --background-color: #030027;
+  --button-color: #28AFB0;
+  --button-hover: #70ee9c;
+  --button-link-color: #ffffff;
+  --secondary-color: #480355;
+  --text-color: #ffffff;
+  --link-color: #28AFB0;
+  --danger: #cc0000;
+  --danger-hover: #cc0000;
+  --danger-text: #ffffff;
+  --table-text: #FEFFFE;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  height: 98vh;
+  margin: 0;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.home-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-prompt-container {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: var(--secondary-color);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+              0 1px 3px rgba(0, 0, 0, 0.2),
+              0 10px 20px rgba(0, 0, 0, 0.2),
+              0 20px 40px rgba(0, 0, 0, 0.3);
+  width: auto;
+  min-height: 650px;
+  padding: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .home-prompt-container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-prompt-container {
+    width: 90%;
+  }
+}
+
+
+.login-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* login prompt container */
+.prompt-container {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: var(--secondary-color);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+              0 1px 3px rgba(0, 0, 0, 0.2),
+              0 10px 20px rgba(0, 0, 0, 0.2),
+              0 20px 40px rgba(0, 0, 0, 0.3);
+  width: auto;
+  min-height: auto;
+  padding: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .prompt-container {
+    width: 80%;
+  }
+
+  .form-group,
+  .create-tenant-form-group {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  input[type="number"] {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .prompt-container {
+    width: 90%;
+  }
+
+  .form-group,
+  .create-tenant-form-group {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  input[type="number"] {
+    font-size: 16px;
+  }
+}
+
+.create-tenant-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.file-input-row {
+  justify-content: center;
+}
+
+.form-group,
+.create-tenant-form-group {
+  margin-bottom: 15px;
+  width: 400px;
+  flex: 0 0 calc(50% - 10px);
+}
+
+@media (max-width: 600px) {
+  .form-group {
+    flex: 0 0 100%;
+  }
+}
+
+h1 {
+  font-size: 5rem;
+  padding-bottom: 30px;
+  padding-top: 60px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.login-title {
+  padding-top: 35px;
+  padding-bottom: 15px;
+}
+
+p {
+  padding-bottom: 30px;
+}
+
+.home-button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.home-button {
+  text-decoration: none;
+  background-color: var(--button-color);
+  color: var(--button-link-color);
+  font-weight: bold;
+  font-size: 2rem;
+  border-radius: 10px;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 250px;
+}
+
+.home-button:hover {
+  background-color: var(--button-hover);
+  animation: pulse 1.5s infinite;
+}
+
+.home-button:active {
+  transform: scale(0.95);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(50, 205, 50, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(50, 205, 50, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(50, 205, 50, 0);
+  }
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  height: 80px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid var(--button-color);
+  border-radius: 4px;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-size: 28px;
+}
+
+input[type="date"].form-control {
+  display: inline-block;
+  width: 94%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input[type="date"].form-control:focus {
+  color: #495057;
+  background-color: var(--secondary-color);
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.file-input-container {
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+
+.custom-file-upload {
+  display: inline-block;
+  background-color: purple;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  transition: 0.3s;
+  width: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.custom-file-upload:hover {
+  background-color: var(--button-hover)
+}
+
+.custom-file-upload:active {
+  transform: scale(0.95);
+}
+
+.file-name {
+  display: inline-block;
+  padding-left: 10px;
+  vertical-align: middle;
+}
+
+
+
+.login-form-button-group,
+.create-tenant-form-button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+button[type="submit"].btn-primary.login-btn,
+button[type="submit"].btn-primary.create-tenant-btn {
+  font-size: 1.5rem;
+  color: var(--button-link-color);
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  height: 60px;
+}
+
+button[type="submit"].btn-primary.login-btn,
+button[type="submit"].btn-primary.create-tenant-btn {
+  background-color: var(--button-color);
+}
+
+button[type="submit"].btn-primary.login-btn:hover,
+button[type="submit"].btn-primary.create-tenant-btn:hover {
+  background-color: var(--button-hover);
+}
+
+button[type="button"].forgot-password-btn {
+  background-color: var(--danger);
+}
+
+button[type="button"].forgot-password-btn:hover {
+  background-color: var(--danger-hover)
+}
+
+button[type="submit"].btn-primary.login-btn:active,
+button[type="submit"].btn-primary.create-tenant-btn:active {
+  transform: scale(0.95);
+}
+
+.forgot-password-btn {
+  font-size: 1.5rem;
+  background-color: var(--danger);
+  color: var(--danger-text);
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.forgot-password-btn:hover {
+  background-color: var(--danger-hover)
+}
+
+.forgot-password-btn:active {
+  transform: scale(0.95);
+}
+
+
+.back-home {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--text-color);
+  margin-top: 50px;
+  transition: 0.3s;
+}
+
+.back-home:hover {
+  color: var(--button-color);
+}
+
+.landlord-dashboard-container {
+  width: 100%;
+}
+
+.landlord-title-container {
+  width: 100%;
+  text-align: center;
+}
+
+.landlord-welcome {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.landlord-modules-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.landlord-module {
+  box-sizing: border-box;
+  flex: 0 0 calc(33.3333% - 40px);
+  margin-bottom: 20px;
+  height: 400px;
+  overflow: auto;
+  background: var(--secondary-color);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+@media (max-width: 912px) {
+  .landlord-module {
+    flex: 0 0 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 913px) and (max-width: 1919px) {
+  .landlord-module {
+    flex-basis: calc(33.333% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .landlord-module {
+    flex-basis: calc(33.333% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+
+
+.add-tenant-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-tenant-button {
+  text-decoration: none;
+  background-color: var(--button-color);
+  color: var(--button-link-color);
+  font-weight: bold;
+  font-size: 2rem;
+  border-radius: 10px;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 400px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 912px) {
+  .add-tenant-button {
+    height: 150px;
+    width: 250px;
+  }
+}
+
+.add-tenant-button:hover {
+  background-color: var(--button-hover);
+  animation: pulse 1.5s infinite;
+}
+
+.add-tenant-button:active {
+  transform: scale(0.95);
+}
+
+.add-tenant-link {
+  text-decoration: none;
+}
+
+.tenant-list {
+  text-align: center;
+}
+
+.tenant-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tenant-list th,
+.tenant-list td {
+  text-align: left;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tenant-list th {
+  color: var(--table-text);
+  font-weight: bold;
+}
+
+.tenant-list tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tenant-list tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tenant-list a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.tenant-list a:hover {
+  text-decoration: underline;
+}
+
+
+.landlord-modules-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.landlord-modules-container th,
+.landlord-modules-container td {
+  text-align: left;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.landlord-modules-container th {
+  color: var(--table-text);
+  font-weight: bold;
+}
+
+.landlord-modules-container tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.landlord-modules-container tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.landlord-modules-container a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.landlord-modules-container a:hover {
+  text-decoration: underline;
+}
+
+ul.messages {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+li {
+  font-size: 1.4rem;
+  background-color: var(--secondary-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  height: 75px;
+  width: 500px;
+  text-align: center;
+  display: flex;           
+  align-items: center;     
+  justify-content: center;
+  flex-direction: column; 
+}
+
+li.info {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.tenant-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.tenant-details-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.tenant-details-list li {
+  margin-bottom: 10px;
+  color: var(--primary-text-color); 
+}
+
+.tenant-details-list li strong {
+  color: var(--secondary-text-color);
+}
+
+
+.maintenance-request-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
+  background-color: var(--background-color);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+              0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+  .maintenance-request-detail-container {
+    width: 90%;
+  }
+}
+
+
+.maintenance-request-details {
+  background: var(--secondary-color);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+              0 1px 3px rgba(0, 0, 0, 0.2),
+              0 10px 20px rgba(0, 0, 0, 0.2),
+              0 20px 40px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  max-width: 800px;
+  width: 90%;
+}
+
+.maintenance-request-details h1 {
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.maintenance-request-details table {
+  width: 100%;
+  margin-bottom: 2rem;
+  border-collapse: collapse;
+  color: var(--table-text);
+}
+
+.maintenance-request-details th,
+.maintenance-request-details td {
+  border: 1px solid var(--table-text);
+  padding: 1rem;
+  text-align: left;
+}
+
+.maintenance-request-details th {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.maintenance-request-details td {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.maintenance-request-details .btn-primary {
+  background-color: var(--button-color);
+  color: var(--button-link-color);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.maintenance-request-details .btn-primary:hover {
+  background-color: var(--button-hover);
+}
+
+.maintenance-request-details .btn-primary:active {
+  transform: scale(0.95);
+}
+
+.maintenance-request-details a {
+  color: var(--link-color);
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.maintenance-request-details a:hover {
+  color: var(--button-hover);
+}
+
+.button-link-group {
+  text-align: center;
+}
+
+.status-dropdown {
+  background-color: var(--background-color);
+  color: var(--button-link-color);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.status-dropdown:hover {
+  background-color: var(--button-hover);
+}

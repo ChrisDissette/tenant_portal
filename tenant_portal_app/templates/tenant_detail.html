@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="tenant-details-container">
+  <h2 class="tenant-details-title">Tenant Details</h2>
+  <ul class="tenant-details-list">
+    <li><strong>Name:</strong> {{ tenant.first_name }} {{ tenant.last_name }}</li>
+    <li><strong>Email:</strong> {{ tenant.email }}</li>
+    <li><strong>Phone Number:</strong> {{ tenant.phone_number }}</li>
+    <li><strong>Apartment Number:</strong> {{ tenant.apartment_number }}</li>
+    <li><strong>Lease Start:</strong> {{ tenant.lease_start }}</li>
+    <li><strong>Lease End:</strong> {{ tenant.lease_end }}</li>
+    <li><strong>Monthly Rent:</strong> ${{ tenant.monthly_rent }}</li>
+    <li><strong>Lease PDF:</strong> <a href="{{ tenant.lease_pdf.url }}" target="_blank">Download</a></li>
+  </ul>
+  <a href="{% url 'landlord_dashboard' %}" class="tenant-details-back">Back to Landlord Dashboard</a>
+</div>
+{% endblock %}

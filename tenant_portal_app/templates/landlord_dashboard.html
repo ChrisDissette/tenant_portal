@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="landlord-dashboard-container">
+        <div class="landlord-title-container">
+            <!-- <h2 class="landlord-welcome">Welcome, {{ user.username }}!</h2> -->
+            <h2 class="landlord-title">Landlord Dashboard</h3>
+        </div>
+
+        <div class="landlord-modules-container">
+            
+                <div class="landlord-module add-tenant-button-container">
+                    <a href="{% url 'create_tenant' %}" class="add-tenant-link"><button class="add-tenant-button">Add Tenant</button></a>
+                </div>
+            
+                <div class="landlord-module tenant-list">
+                    <h4>Tenants</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tenant in tenants %}
+                            <tr>
+                                <td><a href="{% url 'tenant_detail' tenant.id %}">{{ tenant.first_name }} {{ tenant.last_name }}</a></td>
+                                <td><a href="{% url 'edit_tenant' tenant.id %}">Edit</a></td>
+                                <td><a href="{% url 'delete_tenant' tenant.id %}">Delete</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        
+                <div class="landlord-module">
+                    <h4>Maintenance Requests</h4>
+                    <form id="show-completed-form" method="get" action="{{ request.path }}">
+                        <input type="checkbox" id="show-completed" name="show_completed" {% if show_completed %}checked{% endif %}>
+                        <label for="show-completed">Show Completed</label>
+                    </form>
+                    
+                    <script>
+                        document.getElementById('show-completed').addEventListener('change', function() {
+                            document.getElementById('show-completed-form').submit();
+                        });
+                        </script>
+                        {% if maintenance_requests %}
+                    <table>
+                        <thead>
+                            <tr>
+                            <th>Title</th>
+                            <th>Submitted By</th>
+                            <th>Date Submitted</th>
+                            <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for maintenance_request in maintenance_requests %}
+                            <tr>
+                                <td><a href="{% url 'maintenance_request_details' maintenance_request.id %}">{{ maintenance_request.title }}</a></td>
+                                <td>{{ maintenance_request.tenant.first_name }} {{ maintenance_request.tenant.last_name }}</td>
+                                <td>{{ maintenance_request.submitted_date }}</td>
+                                <td>{{ maintenance_request.status }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p>No maintenance requests found.</p>
+                    {% endif %}
+                </div>
+            
+
+        
+            <div class="landlord-module">
+                <h4>Messages</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Tenant</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for message in messages %}
+                        <tr>
+                            <td><a href="{% url 'message_details' message.id %}">{{ message.title }}</a></td>
+                            <td>{{ message.tenant }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="2">No messages found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    
+            <div class="landlord-module">
+                <h4>Lease Ending < 60 Days</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tenant Name</th>
+                            <th>Days Remaining</th>
+                            <th>Lease End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tenant in tenants_31_60_days %}
+                        <tr>
+                            <td>{{ tenant.first_name }} {{ tenant.last_name }}</td>
+                            <td>{{ tenant.days_remaining }}</td>
+                            <td>{{ tenant.lease_end }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3">No tenants found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    
+            <div class="landlord-module">
+                <h4>Lease Ending < 30 Days</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tenant Name</th>
+                            <th>Days Remaining</th>
+                            <th>Lease End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tenant in tenants_0_30_days %}
+                        <tr>
+                            <td>{{ tenant.first_name }} {{ tenant.last_name }}</td>
+                            <td>{{ tenant.days_remaining|default:'Today' }}</td>
+                            <td>{{ tenant.lease_end }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3">No tenants found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="{% url 'user_logout' %}" class="btn btn-danger">Logout</a>
+    </div>
+{% endblock %}

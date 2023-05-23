@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Maintenance Request Details</h2>
+
+<p>Submitted by: {{ maintenance_request.tenant }}</p>
+<p>Submitted date: {{ maintenance_request.submitted_date|date:"F j, Y, g:i a" }}</p>
+<p>Description: {{ maintenance_request.description }}</p>
+<p>Status: {{ maintenance_request.status }}</p>
+
+{% if maintenance_request.status == 'open' %}
+    <a href="{% url 'mark_maintenance_request_complete' maintenance_request.id %}" class="btn btn-primary">Mark as Complete</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="maintenance-request-detail-container">
+    <div class="maintenance-request-details">
+        <h1>Message Details</h1>
+        <table>
+            <tr>
+                <th>Subject</th>
+                <td>{{ message.title }}</td>
+            </tr>
+            <tr>
+                <th>Submitted by</th>
+                <td>{{ message.tenant }}</td>
+            </tr>
+            <tr>
+                <th>Submitted date</th>
+                <td>{{ message.submitted_date|date:"F j, Y, P" }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ message.content }}</td>
+            </tr>       
+        </table>
+        
+        <div class="button-link-group">
+            <a href="{% url 'landlord_dashboard' %}">Return to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

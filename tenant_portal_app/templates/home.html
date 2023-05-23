@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="home-container">
+        <div class="home-prompt-container">
+            <h1>Your Tenant Portal</h1>
+            <p>Please choose your account type to proceed:</p>
+            <div class="home-button-group">
+                <a href="{% url 'landlord_login' %}" class="home-button">Landlord Login</a>
+                <a href="{% url 'tenant_login' %}" class="home-button">Tenant Login</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
